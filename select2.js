@@ -1,6 +1,6 @@
 ﻿/*
  Copyright 2012 Igor Vaynberg
- 
+
  Version: @@ver@@ Timestamp: @@timestamp@@
 
  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in
@@ -369,9 +369,15 @@
             this.enabled=true;
             this.container = this.createContainer();
 
-            if (opts.element.attr("class") !== undefined) {
-                this.container.addClass(opts.element.attr("class"));
-            }
+
+          // if (opts.element.attr("class") !== undefined) {
+          //   this.container.addClass(opts.element.attr("class"));
+          // }
+
+          //ajust width on resize
+          $(window).resize($.proxy(function() {
+            this.container.css('width', this.getContainerWidth());
+          }, this));
 
             // swap container for the element
             this.opts.element
